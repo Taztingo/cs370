@@ -1,6 +1,10 @@
 #include "roulette.h"
+#include <iostream>
 
 int main()
 {
-	return 0;
+	std::list<uint> gl_myList;
+	uint people = 5;
+	uint step = 2;
+	return roulette(people, step);
 }

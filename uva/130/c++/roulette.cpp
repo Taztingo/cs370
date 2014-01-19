@@ -1,6 +1,6 @@
 #include "roulette.h"
 
-uint roulette(uint people, uint step, uint start)
+uint roulette(uint people, uint step)
 {
 	return 0;
 }

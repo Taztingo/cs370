@@ -1,8 +1,10 @@
-#ifndef ROULETTE_H_
-	#define ROULETTE_H_
+#ifndef TEST_H_
+	#define TEST_H_
 
+	#include <list>
+	
 	typedef unsigned int uint;
-
-	uint roulette(uint people, uint step, uint start);
-	//uint kill(iterator iter, uint step);
+	extern std::list<uint> gl_myList;
+	uint roulette(uint people, uint step);
+	uint kill(std::list<uint>::iterator iter, uint step);
 #endif

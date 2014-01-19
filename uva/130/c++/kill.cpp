@@ -1,6 +1,6 @@
 #include "roulette.h"
 
-uint kill(iterator iter, uint step)
+uint kill(std::list<uint>::iterator iterator, uint step)
 {
 	return 0;
 }
