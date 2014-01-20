@@ -2,5 +2,12 @@
 
 uint kill(std::list<uint>::iterator iterator, uint step)
 {
-	return 0;
+	for(uint i = 0; i < step; i++)
+	{
+		iterator++;
+		if(iterator == gl_myList.end())
+			iterator = gl_myList.begin();
+	}
+
+	return *iterator;
 }
