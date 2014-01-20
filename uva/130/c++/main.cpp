@@ -3,7 +3,7 @@
 
 int main()
 {
-	uint people = 5;
+	uint people = 1000;
 	uint step = 2;
 	std::cout << "The last person standing is: " << roulette(people, step) << "\n";
 	
