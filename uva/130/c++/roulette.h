@@ -4,7 +4,7 @@
 	#include <list>
 	
 	typedef unsigned int uint;
-	extern std::list<uint> gl_myList;
+	static std::list<uint> gl_myList;
 	uint roulette(uint people, uint step);
 	uint kill(std::list<uint>::iterator iter, uint step);
 #endif
