@@ -4,15 +4,15 @@
 
 RM = rm -f
 SRCPATH = .
-SRC = roulette.cpp kill.cpp
+SRC = roulette.cpp advanceList.cpp
 TESTNAME = test
 TESTSRC = main.cpp
 
 all: re $(SRC) $(TESTSRC)
-	g++ $(SRC) $(TESTSRC) -pedantic -Wall -Werror -std=c++0x -o $(TESTNAME)
+	g++ $(SRC) $(TESTSRC) -lm -lcrypt -O2 -std=c++11 -pipe -DONLINE_JUDGE -o $(TESTNAME)
 
 debug: re $(SRC) $(TESTSRC)
-	g++ $(SRC) $(TESTSRC) -Wall -Werror -std=c++0x -o $(TESTNAME) -g
+	g++ $(SRC) $(TESTSRC) -lm -lcrypt -O2 -std=c++11 -pipe -DONLINE_JUDGE -o $(TESTNAME) -g
 
 retest: re test
 
