@@ -4,7 +4,7 @@
 
 RM = rm -f
 SRCPATH = .
-SRC = roulette.cpp advanceList.cpp
+SRC = roulette.cpp
 TESTNAME = test
 TESTSRC = main.cpp
 
