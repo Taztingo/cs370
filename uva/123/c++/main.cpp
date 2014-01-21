@@ -2,6 +2,7 @@
 #include <map>
 #include <vector>
 #include <string>
+#include <algorithm>
 
 int main()
 {
@@ -21,6 +22,12 @@ int main()
 	titles.push_back("The Old Man and The Sea");
 	titles.push_back("A Portrait of the Artist As a Young Man");
 	titles.push_back("A Man is a Man but Bubblesort IS A DOG");
+	std::sort(titles.begin(), titles.end());
+
+	for(auto i = titles.begin(); i != titles.end(); i++)
+	{
+		std::cout << *i << "\n";
+	}
 
 	return 0;
 }
