@@ -4,7 +4,7 @@
 
 RM = rm -f
 SRCPATH = .
-SRC = 
+SRC = isExclusion.cpp
 TESTNAME = test
 TESTSRC = main.cpp
 
