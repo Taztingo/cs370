@@ -1,16 +1,8 @@
 #include "titles.h"
-#include <iostream>
+#include <string>
+#include <map>
 
-bool isExclusion(std::string word)
+bool isExclusion(const std::map<std::string, int>& map, const std::string& word)
 {
-	try
-	{
-		exclusions.at(word);	
-	}
-	catch (std::out_of_range e)
-	{
-		return false;
-	}
-
-	return true;
+	return map.find(word) != map.end();
 }
