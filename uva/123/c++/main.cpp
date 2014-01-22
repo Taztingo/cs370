@@ -2,11 +2,11 @@
 #include "titles.h"
 #include <algorithm>
 #include <vector>
-#include <map>
+#include <unordered_map>
 
 int main()
 {
-	std::map<std::string, int> exclusions;
+	std::unordered_map<std::string, int> exclusions;
 	std::vector<std::string> titles;
 	
 	exclusions["is"] = 1;
@@ -24,13 +24,7 @@ int main()
 	titles.push_back("A Man is a Man but Bubblesort IS A DOG");
 	std::sort(titles.begin(), titles.end());
 
-	std::cout << "Exclusion?: " << isExclusion(exclusions, "hello") << std::endl;
-	std::cout << "Exclusion?: " << isExclusion(exclusions, "the") << std::endl;
-
-	for(auto i = titles.begin(); i != titles.end(); i++)
-	{
-		std::cout << *i << "\n";
-	}
-
+	
+	
 	return 0;
 }
