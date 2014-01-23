@@ -1,5 +1,5 @@
 #include <string>
-#include <kwic.h>
+#include "Kwic.h"
 
 Kwic::Kwic()
 {
@@ -18,17 +18,17 @@ Kwic::~Kwic()
 
 }
 
-std::string& getKeyword()
+std::string& Kwic::getKeyword()
 {
 	return _keyword;
 }
 
-std::string& getTitle()
+std::string& Kwic::getTitle()
 {
 	return _title;
 }
 
-bool operator<(Kwic& kwic)
+bool Kwic::operator<(Kwic& kwic)
 {
 	if(&kwic != this)
 	{
@@ -38,7 +38,7 @@ bool operator<(Kwic& kwic)
 		}
 		else if(_keyword.compare(kwic.getKeyword()) == 0)
 		{
-			if(title.compare(kwic.getTitle()) < 0)
+			if(_title.compare(kwic.getTitle()) < 0)
 			{
 				return true;
 			}

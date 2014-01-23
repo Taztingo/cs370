@@ -1,6 +1,7 @@
 #ifndef KWIC_H_
 	#define KWIC_H_
-	
+
+	#include <string>
 	class Kwic
 	{
 		private:
@@ -10,7 +11,7 @@
 		public:
 			Kwic();
 			Kwic(std::string keyword, std::string title);
-			~virtual Kwic();
+			virtual ~Kwic();
 			std::string& getKeyword();
 			std::string& getTitle();
 			bool operator<(Kwic& kwic);
