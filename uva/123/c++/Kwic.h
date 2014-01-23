@@ -1,7 +1,7 @@
 #ifndef KWIC_H_
 	#define KWIC_H_
 
-	#include <string>
+	class string;
 	class Kwic
 	{
 		private:
