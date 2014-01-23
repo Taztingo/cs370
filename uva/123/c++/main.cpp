@@ -24,7 +24,5 @@ int main()
 	titles.push_back("A Man is a Man but Bubblesort IS A DOG");
 	std::sort(titles.begin(), titles.end());
 
-	
-	
 	return 0;
 }
