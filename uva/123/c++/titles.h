@@ -7,5 +7,6 @@
 	#include "Kwic.h"
 	bool isExclusion(const std::unordered_map<std::string, int>& map, const std::string& word);
 	void createKwics(const std::unordered_map<std::string, int>& exclusions, const std::string& title, std::vector<Kwic>& kwics);
+	std::string toUppercase(std::string str);
 
 #endif

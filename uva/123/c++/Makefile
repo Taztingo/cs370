@@ -4,7 +4,7 @@
 
 RM = rm -f
 SRCPATH = .
-SRC = isExclusion.cpp Kwic.cpp createKwics.cpp
+SRC = isExclusion.cpp Kwic.cpp createKwics.cpp toUppercase.cpp
 TESTNAME = test
 TESTSRC = main.cpp
 
