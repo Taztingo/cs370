@@ -17,7 +17,6 @@ int main()
 	{
 		std::cin.getline(enteredValue, 1000);
 		std::string stringValue(enteredValue);
-		std::cout << "Entered: " << stringValue << std::endl;
 		if(enteringExclusions)
 		{
 			if(stringValue == "::")
@@ -40,9 +39,11 @@ int main()
 		}
 	}
 
+	int id = 0;
 	for(auto i = 0; i < titles.size(); i++)
 	{
-		createKwics(exclusions, titles[i], kwics);
+		createKwics(exclusions, titles[i], id, kwics);
+		id++;
 	}
 	std::sort(kwics.begin(), kwics.end());
 

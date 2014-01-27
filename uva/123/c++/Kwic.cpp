@@ -7,10 +7,11 @@ Kwic::Kwic()
 	_title = "";
 }
 
-Kwic::Kwic(std::string keyword, std::string title)
+Kwic::Kwic(std::string keyword, std::string title, int id)
 {
 	_keyword = keyword;
 	_title = title;
+	_priority = id;
 }
 
 Kwic::~Kwic()
@@ -26,6 +27,16 @@ std::string& Kwic::getKeyword()
 std::string& Kwic::getTitle()
 {
 	return _title;
+}
+
+uint Kwic::getPriority()
+{
+	return _priority;
+}
+
+const uint Kwic::getPriority() const
+{
+	return _priority;
 }
 
 const std::string& Kwic::getKeyword() const
@@ -48,7 +59,7 @@ bool Kwic::operator<(const Kwic& kwic) const
 		}
 		else if(_keyword.compare(kwic.getKeyword()) == 0)
 		{
-			if(_title.compare(kwic.getTitle()) < 0)
+			if(_priority < kwic.getPriority())
 			{
 				return true;
 			}

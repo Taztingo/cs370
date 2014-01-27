@@ -6,7 +6,7 @@
 #include <string>
 #include <iostream>
 
-void createKwics(const std::unordered_map<std::string, int>& exclusions, const std::string& title, std::vector<Kwic>& kwics)
+void createKwics(const std::unordered_map<std::string, int>& exclusions, const std::string& title, int id, std::vector<Kwic>& kwics)
 {
 	
 	char* titleString = new char[title.size() + 1];
@@ -37,7 +37,7 @@ void createKwics(const std::unordered_map<std::string, int>& exclusions, const s
 				titleCopy.replace(leftPointer, rightPointer - leftPointer, toUppercase(word));
 			
 				//Creates the kwic
-				Kwic kwic(word, titleCopy);
+				Kwic kwic(word, titleCopy, id);
 				kwics.push_back(kwic);
 			}
 
