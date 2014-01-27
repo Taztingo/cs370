@@ -28,7 +28,17 @@ std::string& Kwic::getTitle()
 	return _title;
 }
 
-bool Kwic::operator<(Kwic& kwic)
+const std::string& Kwic::getKeyword() const
+{
+	return _keyword;
+}
+
+const std::string& Kwic::getTitle() const
+{
+	return _title;
+}
+
+bool Kwic::operator<(const Kwic& kwic) const
 {
 	if(&kwic != this)
 	{

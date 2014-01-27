@@ -12,8 +12,10 @@
 			Kwic();
 			Kwic(std::string keyword, std::string title);
 			virtual ~Kwic();
+			const std::string& getKeyword() const;
+			const std::string& getTitle() const;
 			std::string& getKeyword();
 			std::string& getTitle();
-			bool operator<(Kwic& kwic);
+			bool operator<(const Kwic& kwic) const;
 	};
 #endif

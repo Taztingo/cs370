@@ -30,11 +30,11 @@ int main()
 	{
 		createKwics(exclusions, titles[i], kwics);
 	}
-	std::make_heap(kwics.begin(), kwics.end());
+	std::sort(kwics.begin(), kwics.end());
 
 	for(auto i = kwics.begin(); i != kwics.end(); i++)
 	{
-		std::cout << i->getTitle() << " / Keyword: " << i->getKeyword() << "\n";
+		std::cout << i->getTitle() << std::endl;
 	}
 
 	return 0;
