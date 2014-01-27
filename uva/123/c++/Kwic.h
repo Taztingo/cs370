@@ -7,6 +7,7 @@
 		private:
 			std::string _keyword;
 			std::string _title;
+			uint priority;
 
 		public:
 			Kwic();

@@ -10,21 +10,35 @@ int main()
 	std::unordered_map<std::string, int> exclusions;
 	std::vector<std::string> titles;
 	std::vector<Kwic> kwics;
-	
-	exclusions["is"] = 1;
-	exclusions["the"] = 1;
-	exclusions["of"] = 1;
-	exclusions["and"] = 1;
-	exclusions["a"] = 1;
-	exclusions["but"] = 1;
-	exclusions["as"] = 1;
 
-	titles.push_back("descent of man");
-	titles.push_back("the ascent of man");
-	titles.push_back("the old man and the sea");
-	titles.push_back("a portrait of the artist as a young man");
-	titles.push_back("a man is a man but bubblesort is a dog");
-	std::sort(titles.begin(), titles.end());
+	bool enteringExclusions = true;
+	char enteredValue[1000];
+	while(true)
+	{
+		std::cin.getline(enteredValue, 1000);
+		std::string stringValue(enteredValue);
+		std::cout << "Entered: " << stringValue << std::endl;
+		if(enteringExclusions)
+		{
+			if(stringValue == "::")
+			{
+				enteringExclusions = false;
+			}
+			else
+			{
+				exclusions[toLowercase(stringValue)] = 1;
+			}
+		}
+		else
+		{
+			if(stringValue == "::")
+			{
+				break;
+			}
+
+			titles.push_back(toLowercase(stringValue));
+		}
+	}
 
 	for(auto i = 0; i < titles.size(); i++)
 	{
