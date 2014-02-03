@@ -23,14 +23,14 @@ int main()
 			{
 				enteringExclusions = false;
 			}
-			else
+			else if(stringValue.size() > 0)
 			{
 				exclusions[toLowercase(stringValue)] = 1;
 			}
 		}
 		else
 		{
-			if(stringValue == "::")
+			if(stringValue.size() == 0)
 			{
 				break;
 			}
