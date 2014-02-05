@@ -1,5 +1,19 @@
 #include <iostream>
 #include "ClosestPair.h"
+
+void closest(int* array, int size)
+{
+	ClosestPair closestPairs;
+
+	for(int i = 0; i < size; i++)
+	{
+		for(int j = i + 1; j < size; j++)
+		{
+			closestPairs.addPair(array[i], array[j]);
+		}
+	}
+}
+
 int main()
 {
 	int array[10];
@@ -14,6 +28,6 @@ int main()
 	array[8] = -68;
 	array[9] = 21;
 
-	
+	closest(array, 10);	
 	return 0;
 }
