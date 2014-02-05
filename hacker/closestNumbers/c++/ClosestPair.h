@@ -4,6 +4,9 @@
 	#include <vector>
 	#include <utility>
 	#include <cmath>
+	#include <string>
+	#include <cstdlib>
+	#include <iostream>
 
 	class ClosestPair
 	{
@@ -18,6 +21,7 @@
 				~ClosestPair();
 				void addPair(const int number1, const int number2);
 				const std::vector< std::pair<int, int> >& getList() const;
+				const std::string toString() const;
 
 	};
 
@@ -57,6 +61,26 @@
 	const std::vector< std::pair<int, int> >& ClosestPair::getList() const
 	{
 		return _list;
+	}
+	
+	const std::string ClosestPair::toString() const
+	{
+		std::string allPairs;
+
+		for(auto iterator = _list.begin(); iterator != _list.end(); iterator++)
+		{
+			allPairs += std::to_string(iterator->first);
+			allPairs += " ";
+			allPairs += std::to_string(iterator->second);
+			allPairs += " ";
+		}
+
+		if(allPairs.size() > 0)
+		{
+			allPairs.substr(0, allPairs.size() - 1);
+		}
+
+		return allPairs;
 	}
 
 #endif

@@ -12,6 +12,8 @@ void closest(int* array, int size)
 			closestPairs.addPair(array[i], array[j]);
 		}
 	}
+
+	std::cout << closestPairs.toString() << "\n";
 }
 
 int main()
@@ -20,8 +22,8 @@ int main()
 	array[0] = 12;
 	array[1] = 47;
 	array[2] = 90;
-	array[3] = 27;
-	array[4] = -37;
+	array[3] = 25;
+	array[4] = -25;
 	array[5] = -63;
 	array[6] = -9;
 	array[7] = 23;
