@@ -3,6 +3,7 @@
 
 	#include <vector>
 	#include <utility>
+	#include <cmath>
 
 	class ClosestPair
 	{
@@ -30,12 +31,25 @@
 	{
 	}
 
-	void addPair(int number1, int number2)
+	void ClosestPair::addPair(int number1, int number2)
 	{
+		long distance = getDistance(number1, number2);
+
+		if(distance < _distance)
+		{
+			clear();
+			_distance = distance;
+
+			//case 1
+		}
+		else if(distance == _distance)
+		{
+			//case 2
+		}
 	}
 
-	long getDistance(int number1, int number2)
+	inline long ClosestPair::getDistance(int number1, int number2)
 	{
-		return 0;
+		return std::abs(number1 - number2);
 	}
 #endif
