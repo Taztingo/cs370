@@ -5,8 +5,6 @@
 	#include <utility>
 	#include <cmath>
 	#include <string>
-	#include <cstdlib>
-	#include <iostream>
 
 	class ClosestPair
 	{
