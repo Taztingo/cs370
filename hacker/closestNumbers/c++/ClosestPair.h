@@ -11,12 +11,14 @@
 				long _distance;
 				const char UNSET = -1;
 				std::vector< std::pair<int, int> > _list;
-				long getDistance(int number1, int number2);
+				long getDistance(const int number1, const int number2) const;
 			
 			public:
 				ClosestPair();
 				~ClosestPair();
-				void addPair(int number1, int number2);
+				void addPair(const int number1, const int number2);
+				const std::vector< std::pair<int, int> >& getList() const;
+
 	};
 
 	ClosestPair::ClosestPair()
@@ -28,7 +30,7 @@
 	{
 	}
 
-	void ClosestPair::addPair(int number1, int number2)
+	void ClosestPair::addPair(const int number1, const int number2)
 	{
 		long distance = getDistance(number1, number2);
 
@@ -46,8 +48,15 @@
 		}
 	}
 
-	inline long ClosestPair::getDistance(int number1, int number2)
+	inline long ClosestPair::getDistance(const int number1, const int number2) const
 	{
 		return std::abs(number1 - number2);
 	}
+
+
+	const std::vector< std::pair<int, int> >& ClosestPair::getList() const
+	{
+		return _list;
+	}
+
 #endif
