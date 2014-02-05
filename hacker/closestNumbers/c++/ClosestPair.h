@@ -9,8 +9,8 @@
 	{
 			private:
 				long _distance;
-				std::vector<int> _list;
-				void clear();
+				const char UNSET = -1;
+				std::vector< std::pair<int, int> > _list;
 				long getDistance(int number1, int number2);
 			
 			public:
@@ -21,13 +21,10 @@
 
 	ClosestPair::ClosestPair()
 	{
+		_distance = UNSET;
 	}
 
 	ClosestPair::~ClosestPair()
-	{
-	}
-
-	void ClosestPair::clear()
 	{
 	}
 
@@ -35,16 +32,17 @@
 	{
 		long distance = getDistance(number1, number2);
 
-		if(distance < _distance)
+		if(distance < _distance || _distance == UNSET)
 		{
-			clear();
+			_list.clear();
 			_distance = distance;
-
-			//case 1
+			std::pair<int, int> newPair(number1, number2);
+			_list.push_back(newPair);	
 		}
 		else if(distance == _distance)
 		{
-			//case 2
+			std::pair<int, int> newPair(number1, number2);
+			_list.push_back(newPair);
 		}
 	}
 
