@@ -4,7 +4,7 @@
 
 RM = rm -f
 SRCPATH = .
-SRC = ClosestPair.h
+SRC = ClosestPair.h closest.cpp
 TESTNAME = test
 TESTSRC = main.cpp
 

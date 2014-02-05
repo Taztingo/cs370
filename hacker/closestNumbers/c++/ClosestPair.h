@@ -1,5 +1,5 @@
-#ifndef CLOSEST_H_
-	#define CLOSEST_H_
+#ifndef CLOSEST_PAIR_H_
+	#define CLOSEST_PAIR_H_
 
 	#include <vector>
 	#include <utility>
