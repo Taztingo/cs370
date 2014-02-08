@@ -13,5 +13,6 @@ void closest(int* array, int size)
 		}
 	}
 
-	std::cout << closestPairs.toString() << "\n";
+	closestPairs.sort();
+	std::cout << closestPairs.toString();
 }

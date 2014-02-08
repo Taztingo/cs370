@@ -5,21 +5,23 @@
 	#include <utility>
 	#include <cmath>
 	#include <string>
+	#include <algorithm>
 
 	class ClosestPair
 	{
 			private:
 				long _distance;
 				const char UNSET = -1;
-				std::vector< std::pair<int, int> > _list;
+				std::vector<int> _list;
 				long getDistance(const int number1, const int number2) const;
 			
 			public:
 				ClosestPair();
 				~ClosestPair();
 				void addPair(const int number1, const int number2);
-				const std::vector< std::pair<int, int> >& getList() const;
+				const std::vector<int>& getList() const;
 				const std::string toString() const;
+				void sort();
 
 	};
 
@@ -40,13 +42,17 @@
 		{
 			_list.clear();
 			_distance = distance;
-			std::pair<int, int> newPair(number1, number2);
-			_list.push_back(newPair);	
+			//std::pair<int, int> newPair(number1, number2);
+			//_list.push_back(newPair);
+			_list.push_back(number1);
+			_list.push_back(number2);
 		}
 		else if(distance == _distance)
 		{
-			std::pair<int, int> newPair(number1, number2);
-			_list.push_back(newPair);
+			_list.push_back(number1);
+			_list.push_back(number2);
+			//std::pair<int, int> newPair(number1, number2);
+			//_list.push_back(newPair);
 		}
 	}
 
@@ -56,7 +62,7 @@
 	}
 
 
-	const std::vector< std::pair<int, int> >& ClosestPair::getList() const
+	const std::vector<int>& ClosestPair::getList() const
 	{
 		return _list;
 	}
@@ -67,10 +73,10 @@
 
 		for(auto iterator = _list.begin(); iterator != _list.end(); iterator++)
 		{
-			allPairs += std::to_string(iterator->first);
+			allPairs += std::to_string(*iterator);
 			allPairs += " ";
-			allPairs += std::to_string(iterator->second);
-			allPairs += " ";
+			//allPairs += std::to_string(iterator->second);
+			//allPairs += " ";
 		}
 
 		if(allPairs.size() > 0)
@@ -79,6 +85,11 @@
 		}
 
 		return allPairs;
+	}
+
+	void ClosestPair::sort()
+	{
+		std::sort(_list.begin(), _list.end());
 	}
 
 #endif
