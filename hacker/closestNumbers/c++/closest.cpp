@@ -12,6 +12,5 @@ void closest(std::vector<int>& vector, int size)
 		closestPairs.addPair(vector[i], vector[i + 1]);
 	}
 
-	//closestPairs.sort();
 	std::cout << closestPairs.toString();
 }

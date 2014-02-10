@@ -42,8 +42,6 @@
 		{
 			_list.clear();
 			_distance = distance;
-			//std::pair<int, int> newPair(number1, number2);
-			//_list.push_back(newPair);
 			_list.push_back(number1);
 			_list.push_back(number2);
 		}
@@ -51,8 +49,6 @@
 		{
 			_list.push_back(number1);
 			_list.push_back(number2);
-			//std::pair<int, int> newPair(number1, number2);
-			//_list.push_back(newPair);
 		}
 	}
 
@@ -75,8 +71,6 @@
 		{
 			allPairs += std::to_string(*iterator);
 			allPairs += " ";
-			//allPairs += std::to_string(iterator->second);
-			//allPairs += " ";
 		}
 
 		if(allPairs.size() > 0)

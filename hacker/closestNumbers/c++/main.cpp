@@ -11,7 +11,6 @@ int main()
 
 	size_t position = 0;
 	size_t nextPosition = 0;
-	int array[sizeOfList];
 	do
 	{
 		position = nextPosition;
