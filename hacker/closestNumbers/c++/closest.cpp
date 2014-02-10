@@ -1,18 +1,17 @@
 #include <iostream>
 #include "ClosestPair.h"
+#include <vector>
 
-void closest(int* array, int size)
+void closest(std::vector<int>& vector, int size)
 {
 	ClosestPair closestPairs;
 
-	for(int i = 0; i < size; i++)
+	std::sort(vector.begin(), vector.end());
+	for(int i = 0; i < size - 1; i++)
 	{
-		for(int j = i + 1; j < size; j++)
-		{
-			closestPairs.addPair(array[i], array[j]);
-		}
+		closestPairs.addPair(vector[i], vector[i + 1]);
 	}
 
-	closestPairs.sort();
+	//closestPairs.sort();
 	std::cout << closestPairs.toString();
 }

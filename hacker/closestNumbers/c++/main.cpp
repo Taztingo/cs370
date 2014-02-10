@@ -7,10 +7,10 @@ int main()
 	std::string allNumbers;
 	std::cin >> sizeOfList >> std::ws;
 	std::getline(std::cin, allNumbers);
+	std::vector<int> vector;
 
 	size_t position = 0;
 	size_t nextPosition = 0;
-	int count = 0;
 	int array[sizeOfList];
 	do
 	{
@@ -18,23 +18,10 @@ int main()
 		nextPosition = allNumbers.find(' ', position + 1);
 		if(position > 0)
 			position++;
-		array[count] = atoi(allNumbers.substr(position, nextPosition - position).c_str());
-		count++;
+		vector.push_back(atoi(allNumbers.substr(position, nextPosition - position).c_str()));
 	}
 	while(nextPosition != std::string::npos);
 
-	/*int array[sizeOfList];
-	array[0] = 12;
-	array[1] = 47;
-	array[2] = 90;
-	array[3] = 25;
-	array[4] = -25;
-	array[5] = -63;
-	array[6] = -9;
-	array[7] = 23;
-	array[8] = -68;
-	array[9] = 21;*/
-
-	closest(array, sizeOfList);
+	closest(vector, sizeOfList);
 	return 0;
 }
