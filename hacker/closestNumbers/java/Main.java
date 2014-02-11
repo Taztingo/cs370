@@ -54,7 +54,7 @@ class ClosestProblem
 	}
 }
 
-public class Main2
+public class Main
 {
 	public static void main(String[] args)
 	{
