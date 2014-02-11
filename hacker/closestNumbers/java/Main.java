@@ -4,9 +4,53 @@ import java.util.Collections;
 
 class ClosestProblem
 {
-	public void solve(ArrayList<Integer> arrayList, int sizeOfList)
+	private ArrayList<Integer> answer = new ArrayList<Integer>();
+
+	public void solve(ArrayList<Integer> arrayList, int size)
 	{
 		Collections.sort(arrayList);
+		final int UNSET = -1;
+		long minDistance = UNSET;
+		long distance;
+
+		Collections.sort(arrayList);
+		for(int i = 0; i < size - 1; i++)
+		{
+			int element1 = arrayList.get(i);
+			int element2 = arrayList.get(i + 1);
+
+			distance = Math.abs(element1 - element2);
+
+			if(distance < minDistance || minDistance == UNSET)
+			{
+				answer.clear();
+				minDistance = distance;
+				answer.add(element1);
+				answer.add(element2);
+			}
+			else if(distance == minDistance)
+			{
+				answer.add(element1);
+				answer.add(element2);
+			}
+		}
+	}
+
+	public String toString()
+	{
+		String allPairs = "";
+
+		for(int i = 0; i < answer.size(); i++)
+		{
+			allPairs += answer.get(i) + " ";
+		}
+
+		if(allPairs.length() > 0)
+		{
+			allPairs = allPairs.substring(0, allPairs.length() - 1);
+		}
+
+		return allPairs;
 	}
 }
 
@@ -17,13 +61,15 @@ public class Main
 		Scanner scanner = new Scanner(System.in);
 		int sizeOfList = scanner.nextInt();
 		ArrayList<Integer> arrayList = new ArrayList<Integer>();
-		scanner = new Scanner(System.in).useDelimiter(" |\\n");
-		while(scanner.hasNext())
+		scanner = new Scanner(System.in);
+		String input = scanner.nextLine();
+		String[] splitInput = input.split(" |\\n");
+		for(int i = 0; i < splitInput.length; i++)
 		{
-			arrayList.add(new Integer(scanner.nextInt()));
+			arrayList.add(new Integer(Integer.parseInt(splitInput[i])));
 		}
-		
 		ClosestProblem closestProblem = new ClosestProblem();
 		closestProblem.solve(arrayList, sizeOfList);
+		System.out.println(closestProblem.toString());
 	}
 }
