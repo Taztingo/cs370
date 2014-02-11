@@ -54,19 +54,16 @@ class ClosestProblem
 	}
 }
 
-public class Main
+public class Main2
 {
 	public static void main(String[] args)
 	{
 		Scanner scanner = new Scanner(System.in);
 		int sizeOfList = scanner.nextInt();
 		ArrayList<Integer> arrayList = new ArrayList<Integer>();
-		scanner = new Scanner(System.in);
-		String input = scanner.nextLine();
-		String[] splitInput = input.split(" |\\n");
-		for(int i = 0; i < splitInput.length; i++)
+		while(scanner.hasNextInt())
 		{
-			arrayList.add(new Integer(Integer.parseInt(splitInput[i])));
+			arrayList.add(new Integer(scanner.nextInt()));
 		}
 		ClosestProblem closestProblem = new ClosestProblem();
 		closestProblem.solve(arrayList, sizeOfList);
