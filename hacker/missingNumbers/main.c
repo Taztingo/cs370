@@ -33,18 +33,27 @@ int main()
     }
     
     for(i = 0; i < x; i ++)
-    {
         for(k = 0; k < j; k ++)
-        {
             if(s[i] == f[k])
             {
                 s[i] = 0;
                 f[k] = 0;
                 break;
             }
+
+    for(k = 0; k < x; k ++)
+    {
+        for(i = 0; i < x; i ++)
+        {
+            if(s[k] < s[i])
+            {
+                s[k] = s[k] ^ s[i];
+                s[i] = s[k] ^ s[i];
+                s[k] = s[k] ^ s[i];
+            }
         }
     }
-    
+        
     for(i = 0; i < x; i ++)
     {
         if(s[i] != 0)
