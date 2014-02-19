@@ -10,12 +10,12 @@ int main()
     int k;
     int x;
     int min;
-    int r[100];
+    int r[200];
     
     scanf("%d\n", &j);
     
     min = 10000;
-    memset(r, 0, sizeof(int) * 100);
+    memset(r, 0, sizeof(int) * 200);
 
     int f[j];
     
@@ -39,25 +39,19 @@ int main()
         s[i] = k;
     }
 
-    for(i = 0; i < x; i ++)
-        for(k = 0; k < j; k ++)
-            if(s[i] == f[k])
-            {
-                s[i] = 0;
-                f[k] = 0;
-                break;
-            }
-
-    for(i = 0; i < x; i++)
+    for(i = 0; i < j; i ++)
     {
-        r[(s[i] % min)] = s[i];
+        r[(f[i] % min)] = f[i];
+        r[(f[i] % min) + 100] -= 1;
     }
+
+    for(i = 0; i < x; i ++)
+        r[(s[i] % min) + 100] += 1;
+
         
     for(i = 0; i < 100; i ++)
-    {
-        if(r[i] != 0)
+        if(r[i + 100] > 0)
             printf("%d ", r[i]);
-    }
     
     return 0;
 }
