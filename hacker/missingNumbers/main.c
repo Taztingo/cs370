@@ -9,16 +9,22 @@ int main()
     int j;
     int k;
     int x;
+    int min;
+    int r[100];
     
     scanf("%d\n", &j);
     
+    min = 10000;
+    memset(r, 0, sizeof(int) * 100);
+
     int f[j];
     
     for(i = 0; i < j; i ++)
     {
         scanf("%d", &k);
+        if(k < min)
+            min = k;
         f[i] = k;
-        //printf("%d: %d\n", i, k);
     }
     
     scanf("%d\n", &x);
@@ -28,10 +34,11 @@ int main()
     for(i = 0; i < x; i ++)
     {
         scanf("%d", &k);
+        if(k < min)
+            min = k;
         s[i] = k;
-        //printf("%d: %d\n", i, k);
     }
-    
+
     for(i = 0; i < x; i ++)
         for(k = 0; k < j; k ++)
             if(s[i] == f[k])
@@ -41,23 +48,15 @@ int main()
                 break;
             }
 
-    for(k = 0; k < x; k ++)
+    for(i = 0; i < x; i++)
     {
-        for(i = 0; i < x; i ++)
-        {
-            if(s[k] < s[i])
-            {
-                s[k] = s[k] ^ s[i];
-                s[i] = s[k] ^ s[i];
-                s[k] = s[k] ^ s[i];
-            }
-        }
+        r[(s[i] % min)] = s[i];
     }
         
-    for(i = 0; i < x; i ++)
+    for(i = 0; i < 100; i ++)
     {
-        if(s[i] != 0)
-            printf("%d ", s[i]);
+        if(r[i] != 0)
+            printf("%d ", r[i]);
     }
     
     return 0;
