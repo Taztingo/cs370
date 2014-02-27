@@ -7,7 +7,7 @@ LIBPATH=
 LIBS=
 # Begin Commands
 all:$(OBJ)
-	cc $(OBJ) $(LIBS) -Wall -pedantic-errors -o $(NAME)
+	cc $(OBJ) $(LIBS) -Wall -pedantic-errors -o $(NAME) -lm
 
 clean:
 	-$(RM) *~
