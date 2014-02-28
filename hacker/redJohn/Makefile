@@ -1,5 +1,5 @@
 #Makefile for Red John Problem
-NAME=RedJohn
+NAME=redJohn
 SRC=main.c
 OBJ=$(SRC:.c=.o)
 RM=rm -f
