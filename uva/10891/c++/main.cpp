@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stack>
 #include <unordered_map>
+#include <map>
 
 std::unordered_map<std::string, int> map;
 
@@ -11,25 +12,25 @@ int optimalMove(int* array, int size)
 	int diff = 0;
 	bool set = false;
 
-	//Base Case
-	if(size == 0)
-	{
-		return max;
-	}
-	
-	//For each sub array for left pick
+	//Subarray name
 	std::string key;
 	for(int i = 0; i < size; i++)
 	{
-		pick += array[i];
-		
 		key += std::to_string(array[i]) + " ";
-		if(map.find(key) != map.end())
-		{
-			map[key] = optimalMove(&array[i + 1], size - (i + 1));
-		}
+	}
 
-		diff = pick - map[key];
+	//Nothing left, or key was found
+	if(size == 0 || map.find(key) != map.end())
+	{
+		return map[key];
+	}
+	
+	//For each sub array for left pick
+	for(int i = 0; i < size; i++)
+	{
+		pick += array[i];
+		diff = pick - optimalMove(&array[i + 1], size - (i + 1));
+
 		if(diff >= max || !set)
 		{
 			max = diff;
@@ -39,18 +40,11 @@ int optimalMove(int* array, int size)
 	
 	//For each sub array for right pick
 	pick = 0;
-	key = "";
 	for(int i = 0; i < size - 1; i++)
 	{
 		pick += array[size - (i + 1)];
-		
-		key += std::to_string(array[i]) + " ";
-		if(map.find(key) == map.end())
-		{
-			map[key] = optimalMove(&array[0], size - (i + 1));
-		}
+		diff = pick - optimalMove(&array[0], size - (i + 1));
 
-		diff = pick - map[key];
 		if(diff >= max || !set)
 		{
 			max = diff;
@@ -58,6 +52,7 @@ int optimalMove(int* array, int size)
 		}
 	}
 
+	map[key] = max;
 	return max;
 }
 
@@ -67,12 +62,12 @@ int main()
 
 	while(true)
 	{
-		int* array;
-		std::string allNumbers;
 		int size;
 		size_t position = 0;
 		size_t nextPosition = 0;
 		int arrayCounter = 0;
+		int* array;
+		std::string allNumbers;
 
 		std::cin >> size >> std::ws;
 		if(size <= 0)
@@ -94,8 +89,12 @@ int main()
 			arrayCounter++;
 		}
 		while(nextPosition != std::string::npos);
-		
-		output += std::to_string(optimalMove(array, size)) + "\n";
+	
+		std::string temp;
+		temp = std::to_string(optimalMove(array, size)) + "\n";
+		std::cout << temp;
+		output += temp;
+		//output += std::to_string(optimalMove(array, size)) + "\n";
 		delete[] array;
 	}
 
