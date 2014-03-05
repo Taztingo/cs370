@@ -5,7 +5,7 @@
 
 std::unordered_map<std::string, int> map;
 
-int optimalMove(int* array, int size)
+int optimalMove(int* array, int size, int start)
 {
 	int max = 0;
 	int pick = 0;
@@ -14,10 +14,7 @@ int optimalMove(int* array, int size)
 
 	//Subarray name
 	std::string key;
-	for(int i = 0; i < size; i++)
-	{
-		key += std::to_string(array[i]) + " ";
-	}
+	key = std::to_string(start) + " " + std::to_string(size);
 
 	//Nothing left, or key was found
 	if(size == 0 || map.find(key) != map.end())
@@ -29,7 +26,7 @@ int optimalMove(int* array, int size)
 	for(int i = 0; i < size; i++)
 	{
 		pick += array[i];
-		diff = pick - optimalMove(&array[i + 1], size - (i + 1));
+		diff = pick - optimalMove(&array[i + 1], size - (i + 1), start+i+1);
 
 		if(diff >= max || !set)
 		{
@@ -43,7 +40,7 @@ int optimalMove(int* array, int size)
 	for(int i = 0; i < size - 1; i++)
 	{
 		pick += array[size - (i + 1)];
-		diff = pick - optimalMove(&array[0], size - (i + 1));
+		diff = pick - optimalMove(&array[0], size - (i + 1), start);
 
 		if(diff >= max || !set)
 		{
@@ -90,11 +87,8 @@ int main()
 		}
 		while(nextPosition != std::string::npos);
 	
-		std::string temp;
-		temp = std::to_string(optimalMove(array, size)) + "\n";
-		std::cout << temp;
-		output += temp;
-		//output += std::to_string(optimalMove(array, size)) + "\n";
+		output += std::to_string(optimalMove(array, size, 0)) + "\n";
+		map.clear();
 		delete[] array;
 	}
 
