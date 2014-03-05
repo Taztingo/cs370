@@ -1,5 +1,4 @@
 #include <iostream>
-#include <stack>
 #include <unordered_map>
 #include <map>
 
@@ -7,13 +6,13 @@ std::unordered_map<std::string, int> map;
 
 int optimalMove(int* array, int size, int start)
 {
+	std::string key;
 	int max = 0;
 	int pick = 0;
 	int diff = 0;
 	bool set = false;
 
 	//Subarray name
-	std::string key;
 	key = std::to_string(start) + " " + std::to_string(size);
 
 	//Nothing left, or key was found
@@ -22,7 +21,7 @@ int optimalMove(int* array, int size, int start)
 		return map[key];
 	}
 	
-	//For each sub array for left pick
+	//For each sub array from left pick
 	for(int i = 0; i < size; i++)
 	{
 		pick += array[i];
@@ -35,7 +34,7 @@ int optimalMove(int* array, int size, int start)
 		}
 	}
 	
-	//For each sub array for right pick
+	//For each sub array from right pick
 	pick = 0;
 	for(int i = 0; i < size - 1; i++)
 	{
@@ -59,21 +58,23 @@ int main()
 
 	while(true)
 	{
-		int size;
+		std::string allNumbers;
 		size_t position = 0;
 		size_t nextPosition = 0;
-		int arrayCounter = 0;
 		int* array;
-		std::string allNumbers;
+		int arrayCounter = 0;
+		int size;
 
+		//Grab size from input
 		std::cin >> size >> std::ws;
 		if(size <= 0)
 		{
 			break;
 		}
-		std::getline(std::cin, allNumbers);
 		array = new int[size];
 
+		//Grab actual input
+		std::getline(std::cin, allNumbers);
 		do
 		{
 			position = nextPosition;
@@ -87,7 +88,10 @@ int main()
 		}
 		while(nextPosition != std::string::npos);
 	
+		//Append output
 		output += std::to_string(optimalMove(array, size, 0)) + "\n";
+		
+		//Reset map, and array
 		map.clear();
 		delete[] array;
 	}
