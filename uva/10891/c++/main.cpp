@@ -43,17 +43,39 @@ int optimalMove(int* array, int size)
 
 int main()
 {
-	int size = 9;
-	int array[size];
-	array[0] = -823;
-	array[1] = 912;
-	array[2] = -345;
-	array[3] = 100000;
-	array[4] = 867;
-	array[5] = -222;
-	array[6] = -991;
-	array[7] = -3;
-	array[8] = -40000;
-	std::cout << "Max distance: " << optimalMove(array, size) << std::endl;
+	while(true)
+	{
+		int* array;
+		int size;
+		std::string allNumbers;
+		size_t position = 0;
+		size_t nextPosition = 0;
+		int arrayCounter = 0;
+
+		std::cin >> size >> std::ws;
+		if(size <= 0)
+		{
+			break;
+		}
+		std::getline(std::cin, allNumbers);
+
+		do
+		{
+			array = new int[size];
+			position = nextPosition;
+			nextPosition = allNumbers.find(' ', position + 1);
+			if(position > 0)
+			{
+				position++;
+			}
+			array[arrayCounter] = atoi(allNumbers.substr(position, nextPosition - position).c_str());
+			arrayCounter++;
+		}
+		while(nextPosition != std::string::npos);
+	
+		std::cout << "Max distance: " << optimalMove(array, size) << std::endl;
+	delete[] array;
+	}
+	
 	return 0;
 }
