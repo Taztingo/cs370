@@ -4,7 +4,7 @@ def sieve_primes(n)
   num_iter = Integer(Math.sqrt(n)) #Number of times primes array will be sieved
   primes = (2..n).to_a #Array that will contain primes
 
-  while num_iter > 1 do
+  while num_iter > 1
     primes = primes.select do |e| 
       (((e % num_iter) != 0) or (e == num_iter))
     end
@@ -16,10 +16,8 @@ end
 
 bricks = Array.new(41, 1)
 
-i = 4
-while i < 41 do
+(4..41).each do |i|
   bricks[i] = bricks[i - 1] + bricks[i - 4]
-  i += 1
 end
 
 n = Integer(gets.chomp)
