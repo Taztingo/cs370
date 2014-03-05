@@ -4,7 +4,7 @@ int optimalMove(int* array, int size)
 {
 	int max = 0;
 	int pick = 0;
-	int diff;
+	int diff = 0;
 	bool set = false;
 
 	//Base Case
@@ -58,10 +58,10 @@ int main()
 			break;
 		}
 		std::getline(std::cin, allNumbers);
+		array = new int[size];
 
 		do
 		{
-			array = new int[size];
 			position = nextPosition;
 			nextPosition = allNumbers.find(' ', position + 1);
 			if(position > 0)
@@ -72,9 +72,9 @@ int main()
 			arrayCounter++;
 		}
 		while(nextPosition != std::string::npos);
-	
-		std::cout << "Max distance: " << optimalMove(array, size) << std::endl;
-	delete[] array;
+		
+		std::cout << optimalMove(array, size) << std::endl;
+		delete[] array;
 	}
 	
 	return 0;
