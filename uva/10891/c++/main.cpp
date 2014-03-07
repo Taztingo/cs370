@@ -1,35 +1,32 @@
 #include <iostream>
-#include <stack>
 #include <unordered_map>
+#include <map>
 
 std::unordered_map<std::string, int> map;
 
-int optimalMove(int* array, int size)
+int optimalMove(int* array, int size, int start)
 {
+	std::string key;
 	int max = 0;
 	int pick = 0;
 	int diff = 0;
 	bool set = false;
 
-	//Base Case
-	if(size == 0)
+	//Subarray name
+	key = std::to_string(start) + " " + std::to_string(size);
+
+	//Nothing left, or key was found
+	if(size == 0 || map.find(key) != map.end())
 	{
-		return max;
+		return map[key];
 	}
 	
-	//For each sub array for left pick
-	std::string key;
+	//For each sub array from left pick
 	for(int i = 0; i < size; i++)
 	{
 		pick += array[i];
-		
-		key += std::to_string(array[i]) + " ";
-		if(map.find(key) != map.end())
-		{
-			map[key] = optimalMove(&array[i + 1], size - (i + 1));
-		}
+		diff = pick - optimalMove(&array[i + 1], size - (i + 1), start+i+1);
 
-		diff = pick - map[key];
 		if(diff >= max || !set)
 		{
 			max = diff;
@@ -37,20 +34,13 @@ int optimalMove(int* array, int size)
 		}
 	}
 	
-	//For each sub array for right pick
+	//For each sub array from right pick
 	pick = 0;
-	key = "";
 	for(int i = 0; i < size - 1; i++)
 	{
 		pick += array[size - (i + 1)];
-		
-		key += std::to_string(array[i]) + " ";
-		if(map.find(key) == map.end())
-		{
-			map[key] = optimalMove(&array[0], size - (i + 1));
-		}
+		diff = pick - optimalMove(&array[0], size - (i + 1), start);
 
-		diff = pick - map[key];
 		if(diff >= max || !set)
 		{
 			max = diff;
@@ -58,6 +48,7 @@ int optimalMove(int* array, int size)
 		}
 	}
 
+	map[key] = max;
 	return max;
 }
 
@@ -67,21 +58,23 @@ int main()
 
 	while(true)
 	{
-		int* array;
 		std::string allNumbers;
-		int size;
 		size_t position = 0;
 		size_t nextPosition = 0;
+		int* array;
 		int arrayCounter = 0;
+		int size;
 
+		//Grab size from input
 		std::cin >> size >> std::ws;
 		if(size <= 0)
 		{
 			break;
 		}
-		std::getline(std::cin, allNumbers);
 		array = new int[size];
 
+		//Grab actual input
+		std::getline(std::cin, allNumbers);
 		do
 		{
 			position = nextPosition;
@@ -94,8 +87,12 @@ int main()
 			arrayCounter++;
 		}
 		while(nextPosition != std::string::npos);
+	
+		//Append output
+		output += std::to_string(optimalMove(array, size, 0)) + "\n";
 		
-		output += std::to_string(optimalMove(array, size)) + "\n";
+		//Reset map, and array
+		map.clear();
 		delete[] array;
 	}
 
