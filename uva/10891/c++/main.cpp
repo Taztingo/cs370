@@ -1,6 +1,8 @@
 #include <iostream>
 #include <unordered_map>
 #include <map>
+#include <ctime>
+#include <sys/time.h>
 
 std::unordered_map<std::string, int> map;
 
@@ -55,6 +57,7 @@ int optimalMove(int* array, int size, int start)
 int main()
 {
 	std::string output;
+	output.reserve(10000);
 
 	while(true)
 	{
@@ -84,7 +87,7 @@ int main()
 		delete[] array;
 	}
 
-	std::cout << output;
+	printf("%s", output.c_str());
 	
 	return 0;
 }
