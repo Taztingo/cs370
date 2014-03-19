@@ -59,10 +59,7 @@ int main()
 	while(true)
 	{
 		std::string allNumbers;
-		size_t position = 0;
-		size_t nextPosition = 0;
 		int* array;
-		int arrayCounter = 0;
 		int size;
 
 		//Grab size from input
@@ -74,19 +71,10 @@ int main()
 		array = new int[size];
 
 		//Grab actual input
-		std::getline(std::cin, allNumbers);
-		do
+		for(int i = 0; i < size; i++)
 		{
-			position = nextPosition;
-			nextPosition = allNumbers.find(' ', position + 1);
-			if(position > 0)
-			{
-				position++;
-			}
-			array[arrayCounter] = atoi(allNumbers.substr(position, nextPosition - position).c_str());
-			arrayCounter++;
+			std::cin >> array[i];
 		}
-		while(nextPosition != std::string::npos);
 	
 		//Append output
 		output += std::to_string(optimalMove(array, size, 0)) + "\n";
