@@ -16,8 +16,8 @@ chiefs = []
   # Fill array with Xs denoting people
   positions = Array.new(i) { |x| x = 'X'}
   puts "number of people #{i}"
-  print positions
-  gets
+  # print positions
+  # gets
 
   pos = -1
 
@@ -41,7 +41,7 @@ chiefs = []
         pos = pos + 1
       end
 
-      puts "Current Pos: #{pos}"
+      # puts "Current Pos: #{pos}"
       # Remove person found
       # print positions
       positions[pos] = '_'
@@ -53,7 +53,7 @@ chiefs = []
     end
 
     # Loop around to front of circle
-    if(pos + 1 > positions.length)
+    if(pos + 1 >= positions.length)
         pos = 0
     else
       pos = pos + 1
@@ -62,9 +62,9 @@ chiefs = []
     eeny = eeny + 1
   end
 
-  puts "Min #{min_pos}"
+  # puts "Min #{min_pos}"
   mins << min_pos
-  puts "Chief #{positions.index('X')}"
+  # puts "Chief #{positions.index('X')}"
   chiefs << positions.index('X')
 
 end
@@ -74,7 +74,7 @@ puts
 
 for x in mins
   puts "Checking #{x} in chiefs"
-  if(chiefs.contains?(x))
+  if(chiefs.include?(x))
     puts x
     break
   end
