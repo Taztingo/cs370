@@ -15,7 +15,7 @@ chiefs = []
 
   # Fill array with Xs denoting people
   positions = Array.new(i) { |x| x = 'X'}
-  puts "number of people #{i}"
+  # puts "number of people #{i}"
   # print positions
   # gets
 
@@ -37,7 +37,7 @@ chiefs = []
 
       # If the position is empty move on until you find a person
       while positions[pos] == '_'
-        puts "Finding new pos, #{pos} was taken"
+        # puts "Finding new pos, #{pos} was taken"
         pos = pos + 1
       end
 
@@ -69,6 +69,8 @@ chiefs = []
 
 end
 
+print mins
+puts
 print chiefs
 puts
 
