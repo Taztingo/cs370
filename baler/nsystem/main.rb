@@ -1,6 +1,7 @@
 # SPOJ 1699 - Numeral System
 # Problem code: NSYSTEM
 
+# Define a custom String function to determine if its a number
 class String
   def is_number?
     true if Float(self) rescue false
@@ -12,6 +13,8 @@ def mcxi_to_i(mcxi)
 
   word = mcxi
 
+  prefix = 0
+
   (0..word.length-1).each do |i|
 
     digit = word[i]
@@ -21,8 +24,13 @@ def mcxi_to_i(mcxi)
     end
 
     case digit
-    when 'm'
-      puts 'm'
+    when 'a'..'z'
+      puts 'Letter'
+      # if(prefix? == true)
+      #   break
+      # else
+      #   prefix? = true
+
     when 'c'
       puts 'c'
     when 'x'
