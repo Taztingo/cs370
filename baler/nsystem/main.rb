@@ -13,7 +13,9 @@ def mcxi_to_i(mcxi)
 
   word = mcxi
 
-  prefix = 0
+  prefix = 1
+  result = 0
+  want_prefix = 0
 
   (0..word.length-1).each do |i|
 
@@ -24,26 +26,40 @@ def mcxi_to_i(mcxi)
     end
 
     case digit
+    # Letter Checking
     when 'a'..'z'
-      puts 'Letter'
-      # if(prefix? == true)
-      #   break
-      # else
-      #   prefix? = true
+      # If a prefix was expected, stop
+      if(want_prefix == true)
+        break
+      else
+        want_prefix = true
+      end
 
-    when 'c'
-      puts 'c'
-    when 'x'
-      puts 'x'
-    when 'i'
-      puts 'i'
+        case digit
+        when 'm'
+          result = result + 1000 * prefix
+        when 'c'
+          result = result + 100 * prefix
+        when 'x'
+          result = result + 10 * prefix
+        when 'i'
+          result = result + 1 * prefix
+        else
+        end
     when 2..9
-      puts digit
+      if(want_prefix == false)
+        break
+      else
+        want_prefix = false
+        prefix = digit
+      end
     else
       puts "What the fuck is this: #{digit}"
     end
   end
 
+  return result
+
 end
 
-mcxi_to_i('m2c4i')
+puts mcxi_to_i('m2c4i')
