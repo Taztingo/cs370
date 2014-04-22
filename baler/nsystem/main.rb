@@ -1,6 +1,8 @@
 # SPOJ 1699 - Numeral System
 # Problem code: NSYSTEM
 
+require ('pry')
+
 # Define a custom String function to determine if its a number
 class String
   def is_number?
@@ -57,24 +59,37 @@ def i_to_mcxi(i)
   base = 1000
 
   # Will count down by factors of 10 checking every base
-  while(base / 10 != 0)
+  while(base != 0)
+    # binding.pry
+
     accumulator = base
 
     # Store prefix to come before base
-    prefix = 1
+    prefix = 0
+
+    # puts "accumulator #{accumulator}, prefix #{prefix}"
 
     while(accumulator + base < number)
-      prefix += 1
-      accumulator += base
+      # binding.pry
+      prefix = prefix + 1
+      accumulator = accumulator + base
+      # binding.pry
     end
 
-    if prefix == 1
-      prefix = nil
+    # puts "accumulator #{accumulator}, prefix #{prefix}"
+
+    # puts accumulator
+    # puts "Appending #{prefix.to_s} and #{translate_base(base)}"
+
+    if(prefix != 0)
+      result_string << (prefix + 1).to_s
     end
 
-    result_string.prepend(prefix.to_s + translate_base(base))
+    result_string << translate_base(base)
 
-    base /= 10
+    number -= accumulator
+    base = base / 10
+    # puts "base #{base}"
   end
 
   return result_string
