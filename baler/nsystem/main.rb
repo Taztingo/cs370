@@ -30,6 +30,7 @@ def mcxi_to_i(mcxi)
     when 'a'..'z'
       # If a prefix was expected, stop
       if(want_prefix == true)
+        result = -1
         break
       else
         want_prefix = true
@@ -48,6 +49,7 @@ def mcxi_to_i(mcxi)
         end
     when 2..9
       if(want_prefix == false)
+        result = -1
         break
       else
         want_prefix = false
@@ -62,4 +64,5 @@ def mcxi_to_i(mcxi)
 
 end
 
-puts mcxi_to_i('m2c4i')
+puts mcxi_to_i('6m2c4i')
+puts mcxi_to_i('6mm2c4i')
