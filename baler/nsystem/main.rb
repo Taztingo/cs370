@@ -68,15 +68,12 @@ def i_to_mcxi(i)
     prefix = 0
 
 
-    while(accumulator + base < number)
+    while(accumulator + base <= number)
       prefix = prefix + 1
       accumulator = accumulator + base
     end
 
-    if(prefix != 0)
-      if(base == 1)
-        prefix += 1
-      end
+    if(prefix > 1)
       result_string << (prefix).to_s
     end
 
@@ -141,15 +138,30 @@ def mcxi_to_i(mcxi)
 
 end
 
-puts mcxi_to_i('6m2c4i')
-puts mcxi_to_i('6mi')
-puts mcxi_to_i('i')
-puts mcxi_to_i('2mci')
-puts mcxi_to_i('9xi')
-puts
-puts i_to_mcxi(6204)
-puts i_to_mcxi(624)
-puts i_to_mcxi(4)
-puts i_to_mcxi(3104)
-puts i_to_mcxi(104)
-puts i_to_mcxi(194)
+# Tests
+# puts mcxi_to_i('6m2c4i')
+# puts mcxi_to_i('6mi')
+# puts mcxi_to_i('i')
+# puts mcxi_to_i('2mci')
+# puts mcxi_to_i('9xi')
+# puts
+# puts i_to_mcxi(6204)
+# puts i_to_mcxi(624)
+# puts i_to_mcxi(4)
+# puts i_to_mcxi(3104)
+# puts i_to_mcxi(104)
+# puts i_to_mcxi(194)
+# puts i_to_mcxi(30)
+
+num_inputs = gets.to_i
+
+(0..num_inputs - 1).each do
+  inputs = gets.split(' ')
+
+  # puts "#{inputs[0]} = #{mcxi_to_i(inputs[0])}"
+  # puts "#{inputs[1]} = #{mcxi_to_i(inputs[1])}"
+  results = mcxi_to_i(inputs[0]).to_i + mcxi_to_i(inputs[1]).to_i
+  # puts "Results: #{results}"
+
+  puts i_to_mcxi(results)
+end
