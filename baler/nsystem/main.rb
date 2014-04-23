@@ -1,8 +1,6 @@
 # SPOJ 1699 - Numeral System
 # Problem code: NSYSTEM
 
-require ('pry')
-
 # Define a custom String function to determine if its a number
 class String
   def is_number?
@@ -58,38 +56,36 @@ def i_to_mcxi(i)
   # Initial base
   base = 1000
 
+  while(base > number)
+    base /= 10
+  end
+
   # Will count down by factors of 10 checking every base
   while(base != 0)
-    # binding.pry
-
-    accumulator = base
+    accumulator = 0
 
     # Store prefix to come before base
     prefix = 0
 
-    # puts "accumulator #{accumulator}, prefix #{prefix}"
 
     while(accumulator + base < number)
-      # binding.pry
       prefix = prefix + 1
       accumulator = accumulator + base
-      # binding.pry
     end
-
-    # puts "accumulator #{accumulator}, prefix #{prefix}"
-
-    # puts accumulator
-    # puts "Appending #{prefix.to_s} and #{translate_base(base)}"
 
     if(prefix != 0)
-      result_string << (prefix + 1).to_s
+      if(base == 1)
+        prefix += 1
+      end
+      result_string << (prefix).to_s
     end
 
-    result_string << translate_base(base)
+    if(accumulator != 0)
+      result_string << translate_base(base)
+    end
 
     number -= accumulator
     base = base / 10
-    # puts "base #{base}"
   end
 
   return result_string
@@ -116,37 +112,26 @@ def mcxi_to_i(mcxi)
     case digit
     # Letter Checking
     when 'a'..'z'
-      # If a prefix was expected, stop
-      if(want_prefix == true)
-        result = -1
-        break
-      else
-        want_prefix = true
-      end
-
       case digit
       when 'm'
         result = result + 1000 * prefix
+        prefix = 1
       when 'c'
         result = result + 100 * prefix
+        prefix = 1
       when 'x'
         result = result + 10 * prefix
+        prefix = 1
       when 'i'
         result = result + 1 * prefix
+        prefix = 1
       else
         warn 'Invalid character'
         result = -1
         break
       end
     when 2..9
-      # If a prefix wasn't expected, stop
-      if(want_prefix == false)
-        result = -1
-        break
-      else
-        want_prefix = false
-        prefix = digit
-      end
+      prefix = digit
     else
       puts "What the fuck is this: #{digit}"
     end
@@ -157,6 +142,14 @@ def mcxi_to_i(mcxi)
 end
 
 puts mcxi_to_i('6m2c4i')
-puts mcxi_to_i('6mm2c4i')
-
+puts mcxi_to_i('6mi')
+puts mcxi_to_i('i')
+puts mcxi_to_i('2mci')
+puts mcxi_to_i('9xi')
+puts
 puts i_to_mcxi(6204)
+puts i_to_mcxi(624)
+puts i_to_mcxi(4)
+puts i_to_mcxi(3104)
+puts i_to_mcxi(104)
+puts i_to_mcxi(194)
