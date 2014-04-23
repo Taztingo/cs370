@@ -19,30 +19,30 @@ def translate_base(mcxi_base)
   if(!mcxi_base.is_number?)
     case mcxi_base
     when 'm'
-      return 1000
+      1000
     when 'c'
-      return 100
+      100
     when 'x'
-      return 10
+      10
     when 'i'
-      return 1
+      1
     else
       warn 'Invalid character'
-      return nil
+      nil
     end
   else
     case mcxi_base
     when 1000
-      return 'm'
+      'm'
     when 100
-      return 'c'
+      'c'
     when 10
-      return 'x'
+      'x'
     when 1
-      return 'i'
+      'i'
     else
       warn 'Invalid character'
-      return nil
+      nil
     end
   end
 end
@@ -62,21 +62,27 @@ def i_to_mcxi(i)
 
   # Will count down by factors of 10 checking every base
   while(base != 0)
+    # Start accumulator
     accumulator = 0
 
     # Store prefix to come before base
     prefix = 0
 
-
+    # accumulator is incremented as it approached the target number
+    # When accumulator >= number then that is the biggest number that
+    # can be represented by that base
     while(accumulator + base <= number)
       prefix = prefix + 1
       accumulator = accumulator + base
     end
 
+    # No prefixes of 0 or 1
     if(prefix > 1)
       result_string << (prefix).to_s
     end
 
+    # If accumulator is 0, there was no digit in that place in the original number
+    # Therefore
     if(accumulator != 0)
       result_string << translate_base(base)
     end
@@ -85,7 +91,7 @@ def i_to_mcxi(i)
     base = base / 10
   end
 
-  return result_string
+  result_string
 
 end
 
@@ -96,12 +102,13 @@ def mcxi_to_i(mcxi)
 
   prefix = 1
   result = 0
-  want_prefix = 0
 
+  # Go through the word one by one and determine what value each digit has
   (0..word.length-1).each do |i|
 
     digit = word[i]
 
+    # Checks for number
     if(digit.is_number?)
       digit = digit.to_i
     end
@@ -109,24 +116,10 @@ def mcxi_to_i(mcxi)
     case digit
     # Letter Checking
     when 'a'..'z'
-      case digit
-      when 'm'
-        result = result + 1000 * prefix
-        prefix = 1
-      when 'c'
-        result = result + 100 * prefix
-        prefix = 1
-      when 'x'
-        result = result + 10 * prefix
-        prefix = 1
-      when 'i'
-        result = result + 1 * prefix
-        prefix = 1
-      else
-        warn 'Invalid character'
-        result = -1
-        break
-      end
+      # Increment result by the value of the letter found multiplied by prefix
+      result += translate_base(digit) * prefix
+      # Reset prefix
+      prefix = 1
     when 2..9
       prefix = digit
     else
@@ -134,7 +127,7 @@ def mcxi_to_i(mcxi)
     end
   end
 
-  return result
+  result
 
 end
 
@@ -157,11 +150,6 @@ num_inputs = gets.to_i
 
 (0..num_inputs - 1).each do
   inputs = gets.split(' ')
-
-  # puts "#{inputs[0]} = #{mcxi_to_i(inputs[0])}"
-  # puts "#{inputs[1]} = #{mcxi_to_i(inputs[1])}"
   results = mcxi_to_i(inputs[0]).to_i + mcxi_to_i(inputs[1]).to_i
-  # puts "Results: #{results}"
-
   puts i_to_mcxi(results)
 end
